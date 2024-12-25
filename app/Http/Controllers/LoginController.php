@@ -13,7 +13,7 @@ class LoginController extends Controller
     public function __invoke(LoginRequest $request): JsonResponse
     {
         if (!Auth::attempt($request->only(['email', 'password']))) {
-            abort(Response::HTTP_UNAUTHORIZED);
+            abort(Response::HTTP_UNAUTHORIZED, 'Wrong email or password');
         }
 
         /** @var User $user */

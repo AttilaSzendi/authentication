@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\RegistrationRequest;
 use App\Models\User;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Hash;
 
 class RegisterController extends Controller

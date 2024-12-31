@@ -1,12 +1,10 @@
 <?php
 
 
- use App\Models\User;
- use Illuminate\Foundation\Testing\RefreshDatabase;
- use Illuminate\Support\Facades\Hash;
-use Laravel\Sanctum\PersonalAccessToken;
+use App\Models\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Symfony\Component\HttpFoundation\Response;
- use Tests\TestCase;
+use Tests\TestCase;
 
 class LogoutTest extends TestCase
 {
@@ -14,7 +12,7 @@ class LogoutTest extends TestCase
 
     public function test_guest_user_cannot_log_out(): void
     {
-        $response = $this->getJson(route('logout'));
+        $response = $this->postJson(route('logout'));
 
         $response->assertStatus(Response::HTTP_UNAUTHORIZED);
     }
@@ -26,7 +24,7 @@ class LogoutTest extends TestCase
 
         $token = $user->createToken('TestToken');
 
-        $response = $this->getJson(route('logout'), [
+        $response = $this->postJson(route('logout'), [
             'Authorization' => 'Bearer ' . $token->plainTextToken,
         ]);
 

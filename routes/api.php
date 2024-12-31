@@ -8,9 +8,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::post('login', LoginController::class)->name('login')->middleware('guest');
-Route::get('logout', LogoutController::class)->name('logout')->middleware('auth:sanctum');
-Route::post('register', RegisterController::class)->name('register');
-Route::get('real-estates', RealEstateIndexController::class)->name('realEstate.index');
+Route::post('logout', LogoutController::class)->name('logout')->middleware('auth:sanctum');
+Route::post('register', RegisterController::class)->name('register')->middleware('guest');
+Route::get('real-estates', RealEstateIndexController::class)->name('realEstate.index')->middleware('auth:sanctum');
 
 Route::get('/user', function (Request $request) {
     return $request->user();
